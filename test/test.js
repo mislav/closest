@@ -50,6 +50,47 @@ test("not found", function() {
 	equal(null, link.closest('.nonexistent'))
 })
 
+test("prepend", function() {
+	var container = document.createElement('div')
+	  , span = document.createElement('span')
+	  , strong = document.createElement('strong')
+
+	container.appendChild(span)
+	container.appendChild(strong)
+
+	container.prepend('hello')
+	var el = container.firstChild
+	equal('#text', el.nodeName)
+	equal('hello', el.textContent)
+	equal('SPAN', el.nextSibling.nodeName)
+
+	strong.prepend(document.createElement('b'))
+	equal(1, strong.childNodes.length)
+	equal('B', strong.firstChild.nodeName)
+})
+
+test("prepend multiple", function() {
+	var container = document.createElement('div')
+	  , span = document.createElement('span')
+
+	container.appendChild(span)
+
+	container.prepend('hello', document.createElement('b'))
+	equal(3, container.childNodes.length)
+	equal('#text', container.childNodes[0].nodeName)
+	equal('B', container.childNodes[1].nodeName)
+	equal('SPAN', container.childNodes[2].nodeName)
+})
+
+test("prepend empty args", function() {
+	var error
+	try {
+		document.body.prepend()
+	} catch(e) { error = e }
+
+	equal('Error: DOM Exception 8', error.toString())
+})
+
 var results = document.getElementById('results')
 results.textContent = tests + " passed, " + failures + " failures."
 
