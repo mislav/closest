@@ -1,4 +1,4 @@
-(function () {
+(function (ELEMENT) {
 	function convertNode(node) {
 		return typeof node === 'string' ? document.createTextNode(node) : node;
 	}
@@ -24,40 +24,40 @@
 	}
 
 	// http://dom.spec.whatwg.org/#dom-parentnode-prepend
-	Element.prototype.prepend = function prepend() {
+	if (!('prepend' in ELEMENT)) ELEMENT.prepend = function prepend() {
 		this.insertBefore(mutation(arguments), this.firstChild);
 	};
 
 	// http://dom.spec.whatwg.org/#dom-parentnode-append
-	Element.prototype.append = function append() {
+	if (!('append' in ELEMENT)) ELEMENT.append = function append() {
 		this.appendChild(mutation(arguments));
 	};
 
 	// http://dom.spec.whatwg.org/#dom-childnode-before
-	Element.prototype.before = function before() {
+	if (!('before' in ELEMENT)) ELEMENT.before = function before() {
 		if (this.parentNode) {
 			this.parentNode.insertBefore(mutation(arguments), this);
 		}
 	};
 
 	// http://dom.spec.whatwg.org/#dom-childnode-after
-	Element.prototype.after = function after() {
+	if (!('after' in ELEMENT)) ELEMENT.after = function after() {
 		if (this.parentNode) {
 			this.parentNode.insertBefore(mutation(arguments), this.nextSibling);
 		}
 	};
 
 	// http://dom.spec.whatwg.org/#dom-childnode-replacewith
-	Element.prototype.replaceWith = function replace() {
+	if (!('replaceWith' in ELEMENT)) ELEMENT.replaceWith = function replace() {
 		if (this.parentNode) {
 			this.parentNode.replaceChild(mutation(arguments), this);
 		}
 	};
 
 	// http://dom.spec.whatwg.org/#dom-childnode-remove
-	Element.prototype.remove = function remove() {
+	if (!('remove' in ELEMENT)) ELEMENT.remove = function remove() {
 		if (this.parentNode) {
 			this.parentNode.removeChild(this);
 		}
 	};
-})();
+})(Element.prototype);
