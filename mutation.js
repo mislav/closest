@@ -10,13 +10,10 @@
 		} else if (nodes.length === 1) {
 			return convertNode(nodes[0]);
 		} else {
-			var
-			fragment = document.createDocumentFragment(),
-			length = nodes.length,
-			index = -1;
+			var i, fragment = document.createDocumentFragment();
 
-			while (++index < length) {
-				fragment.appendChild(convertNode(nodes[index]));
+			for (i = 0; i < nodes.length; i++) {
+				fragment.appendChild(convertNode(nodes[i]));
 			}
 
 			return fragment;
