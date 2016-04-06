@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<style>
+		body {
+			font: medium sans-serif;
+			padding: 1em 2em;
+		}
+		#fixtures { display: none }
+		#results {
+			display: inline-block;
+			padding: 10px 20px;
+			font-weight: bold;
+		}
+		#results.passed {
+			background-color: lightgreen;
+		}
+		#results.failed {
+			background-color: red;
+		}
+		#native .supported:before {
+			content: "✔︎ ";
+			color: green;
+		}
+		#native .unsupported:before {
+			content: "✘ ";
+			color: red;
+		}
+	</style>
+</head>
+
+<body class="signed-in">
+	<div id="fixtures" class="content task-item">
+		<ul class="task-list">
+			<li class="task-item">
+				<a href="#"><span>Hello</span></a>
+			</li>
+		</ul>
+	</div>
+
+	<p id="results"></p>
+
+	<p>Native support:</p>
+	<ul id="native"></ul>
+
+	<script>
+		function indicateSupport(label, hasSupport, note) {
+			var li = document.createElement('li')
+			if (note) label += " (" + note + ")"
+			li.textContent = label
+			li.className = hasSupport ? 'supported' : 'unsupported'
+			document.getElementById('native').appendChild(li)
+		}
+
+		indicateSupport('closest', 'closest' in Element.prototype)
+		var hasMatches = Element.prototype.matches ||
+		                 Element.prototype.mozMatchesSelector ||
+		                 Element.prototype.msMatchesSelector ||
+		                 Element.prototype.webkitMatchesSelector
+		var prefixed = Element.prototype.matches ? false : 'prefixed'
+		indicateSupport('matches', hasMatches, prefixed)
+		indicateSupport('prepend', 'prepend' in Element.prototype)
+		indicateSupport('append', 'append' in Element.prototype)
+		indicateSupport('before', 'before' in Element.prototype)
+		indicateSupport('after', 'after' in Element.prototype)
+		indicateSupport('replaceWith', 'replaceWith' in Element.prototype)
+		indicateSupport('remove', 'remove' in Element.prototype)
+	</script>
+	<script src="../closest.js"></script>
+	<script src="../mutation.js"></script>
+	<script src="test.js"></script>
+</body>
+</html>
