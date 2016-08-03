@@ -1,12 +1,26 @@
 {
-	"name": "closest",
-	"description": "Get the closest element matching a selector up the DOM tree",
-	"version": "1.1.1",
-	"main": "closest.js",
-	"license": "CC0-1.0",
-	"homepage": "https://github.com/jonathantneal/closest",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/jonathantneal/closest.git"
-	}
+  "name": "closest",
+  "version": "1.1.1",
+  "description": "Return the closest element matching a selector up the DOM tree",
+  "main": "closest.js",
+  "scripts": {
+    "test": "eslint *.js --ignore-path .gitignore && jscs *.js"
+  },
+  "repository": "jonathantneal/closest",
+  "keywords": [
+    "closest",
+    "dom",
+    "element",
+    "matches",
+    "polyfill",
+    "standard"
+  ],
+  "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
+  "license": "CC0-1.0",
+  "bugs": "https://github.com/jonathantneal/closest/issues",
+  "homepage": "https://github.com/jonathantneal/closest#readme",
+  "devDependencies": {
+    "eslint": "^2.7.0",
+    "jscs": "^2.11.0"
+  }
 }

@@ -1,25 +1,31 @@
-(function (ELEMENT) {
-	if (typeof ELEMENT.matches != 'function') {
-		ELEMENT.matches = ELEMENT.msMatchesSelector || ELEMENT.mozMatchesSelector || ELEMENT.webkitMatchesSelector ||
-			function (selector) {
-				var element = this,
-						elements = (element.document || element.ownerDocument).querySelectorAll(selector),
-						index = 0;
+// element-closest | CC0-1.0 | github.com/jonathantneal/closest
 
-				while (elements[index] && elements[index] !== element) ++index;
+if (typeof Element.prototype.matches !== 'function') {
+	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.webkitMatchesSelector || function matches(selector) {
+		var element = this;
+		var elements = (element.document || element.ownerDocument).querySelectorAll(selector);
+		var index = 0;
 
-				return !!elements[index];
-			};
-	}
+		while (elements[index] && elements[index] !== element) {
+			++index;
+		}
 
-	if (typeof ELEMENT.closest != 'function') ELEMENT.closest = function (selector) {
-		var node = this;
+		return Boolean(elements[index]);
+	};
+}
 
-		while (node && node.nodeType != 11) {
-			if (node.matches(selector)) return node;
-			else node = node.parentElement;
+if (typeof Element.prototype.closest !== 'function') {
+	Element.prototype.closest = function closest(selector) {
+		var element = this;
+
+		while (element && element.nodeType === 1) {
+			if (element.matches(selector)) {
+				return element;
+			}
+
+			element = element.parentNode;
 		}
 
 		return null;
 	};
-})(Element.prototype);
+}

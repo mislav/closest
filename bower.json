@@ -1,26 +1,13 @@
 {
-	"name": "Element.closest",
-	"description": "Get the closest element matching a selector up the DOM tree",
-	"version": "1.0.0",
-	"main": ["closest.js"],
-	"license": "CC0-1.0",
-	"ignore": [
-		".editorconfig",
-		".jshintrc",
-		"bower.json",
-		"LICENSE.md",
-		"README.md",
-		"test/"
-	],
-	"keywords": [
-		"element",
-		"prototype",
-		"closest",
-		"matches"
-	],
-	"homepage": "https://github.com/jonathantneal/closest",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/jonathantneal/closest.git"
-	}
+  "name": "element-matches",
+  "description": "Return the closest element matching a selector up the DOM tree",
+  "main": "closest.js",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com/)",
+  "license": "CC0-1.0",
+  "ignore": [
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "package.json",
+    "README.md"
+  ]
 }
